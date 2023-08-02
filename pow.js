@@ -31,40 +31,95 @@ CONSTRAINTS:
 
 
 function pow(x, n) {
-  if (!x || !n || typeof n !== "number" || typeof x !== "number") {
+ if (!x || !n || typeof n !== "number" || typeof x !== "number") {
     return 0;
   }
 
-  if (x < 100 || x > 100) {
+  n = Math.floor(n);
+
+  if (x < -100 || x > 100) {
     return 0
   }
 
-  if (n < -2147483648 || n > 2147483647) {
+   if (n < -2147483648 || n > 2147483647) {
     return 0;
   }
 
-  if (n === 0) { return 1 }
+   x < 0 && (x = -x);
 
-  let result;
+   if(x === 1) {
+    return 1;
+   }
 
-  if (n > 0) {
-    result = 1;
+  if (n < 1 && n > 0) { return 1 }
 
-    for (let i = 1; i <= n; i++) {
-      result = result * x;
-    }
+  let result = 1;
+
+
+  const isNegative = n < 0;
+  isNegative && (n = -n); // Math.abs(x)
+  for (let i = 1; i <= n; i++) {
+    result = result * x;
   }
 
-  if (n < 0) {
-    result = 1;
-
-    for (let i = 1; i <= n; i++) {
-      result = result / x;
-    }
-  }
+  isNegative && (result = 1 / result);
 
   return result;
 }
 
-console.log(pow(2,2))
-console.log(pow(2,-2))
+// console.log(pow(2,2))
+// console.log(pow(2,-2));
+// console.log(pow(8,-1));
+// console.log(pow(5,-3));
+
+let i = 0;
+
+function powRecursive (x, n) {
+  console.log("i", ++i)
+  if (n === 0) {
+    return 1
+  }
+
+  if (n === 1) {
+    return x;
+  }
+
+  if (n < 0) {
+    return 1 / powRecursive(x, -n);
+  }
+  return x * powRecursive(x, n - 1);
+}
+
+// console.log(powRecursive(2, 2))
+// console.log(powRecursive(2, 3))
+console.log(powRecursive(2, 10));
+
+// console.log(powRecursive(2, -2));
+// console.log(powRecursive(8, -1));
+// console.log(powRecursive(5, -3));
+
+i = 0;
+
+function powRecursiveMemoized (x, n, memo = {}) {
+  console.log("i", ++i);
+  if (n === 0) {
+    return 1
+  }
+
+  if (n === 1) {
+    return x;
+  }
+
+  if (memo[n] !== undefined) {
+    return memo[n];
+  }
+
+  if (n < 0) {
+    memo[n] = 1 / powRecursive(x, -n, memo);
+  }
+  memo[n] = x * powRecursive(x, n - 1, memo);
+
+  return memo[n];
+}
+
+console.log(powRecursiveMemoized(2, 10));
