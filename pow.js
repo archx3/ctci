@@ -110,7 +110,7 @@ function powRecursiveMemoized (x, n, memo = {}) {
     return x;
   }
 
-  if (memo[n] !== undefined) {
+  if (n in memo) {
     return memo[n];
   }
 

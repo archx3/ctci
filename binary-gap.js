@@ -62,5 +62,56 @@ function solution(N) {
  return binaryGap(getBinarySequence(N));
 }
 
-console.log(binaryGap("10000010001000000001"));
-console.log(solution(1041));
+// console.log(binaryGap("10000010001000000001"));
+// console.log(binaryGap("1000001000100000000"));
+// console.log(binaryGap("000001000100000000"));
+// console.log(solution(1041));
+
+
+function binaryGapWithSlidingWindow (binarySequence) {
+  const SIZE = binarySequence.length;
+
+  let longestGap = 0;
+  let gapLength = 0;
+  let i = -1;
+
+  let left = 0;
+  let right = 1;
+  const gaps = [];
+
+  while (left < SIZE) {
+    console.log("left: ", left, "right: ", right, "gapLength: ", gapLength, "longestGap: ", longestGap)
+
+    if (binarySequence[right] === "0") {
+      if ( gapLength < 1) {
+        // left = right;
+      } else {
+        // gapLength += 1;
+        gapLength = (right - left) + 1;
+      }
+    }
+
+    if (binarySequence[right] === "1") {
+      if (binarySequence[right - 1] === "0") {
+        if (gapLength > longestGap) {
+          longestGap = gapLength;
+          left = right;
+        }
+
+        gaps.push(gapLength);
+        gapLength = 0;
+      } else {
+      }
+    }
+
+    right += 1;
+
+    if (right === SIZE) {
+      left = right;
+    }
+  }
+  return longestGap;
+}
+
+
+console.log(binaryGapWithSlidingWindow("10000010001000000001"));

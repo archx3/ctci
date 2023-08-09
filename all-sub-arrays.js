@@ -71,3 +71,7 @@ function findSubArrays(inputArray) {
 
 console.log(getAllSubArrays([0, 1, 2, 3,]))
 // console.log(printAllSubArrays([1, 2, 3, 4,]))
+
+module.exports = {
+  getAllSubArrays
+}

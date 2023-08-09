@@ -28,25 +28,24 @@
  * @class Queue
  */
 
-
 class Queue {
   constructor () {
-    this.queue = [];
+    this.items = [];
     this.length = 0;
   }
 
   enqueue (item) {
-    this.queue.push(item);
+    this.items.push(item);
     this.length += 1;
   }
 
   dequeue () {
     this.length -= 1;
-    return this.queue.unshift();
+    return this.items.shift();
   }
 
   peek () {
-    return this.queue[0];
+    return this.items[0];
   }
 
   isEmpty () {
@@ -54,21 +53,21 @@ class Queue {
   }
 
   print () {
-    console.log(this.queue);
+    console.log(this.items);
   }
 
   getAll () {
-    return this.queue;
+    return this.items;
   }
 
   clear () {
-    this.queue = [];
+    this.itmes = [];
     this.length = 0;
   }
 
 
   toString () {
-    return this.queue.toString();
+    return this.items.toString();
   }
 }
 
