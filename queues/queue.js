@@ -41,8 +41,8 @@ class Queue {
   }
 
   dequeue () {
-    this.queue.unshift();
     this.length -= 1;
+    return this.queue.unshift();
   }
 
   peek () {
@@ -57,6 +57,10 @@ class Queue {
     console.log(this.queue);
   }
 
+  getAll () {
+    return this.queue;
+  }
+
   clear () {
     this.queue = [];
     this.length = 0;
@@ -67,3 +71,5 @@ class Queue {
     return this.queue.toString();
   }
 }
+
+module.exports = Queue;
