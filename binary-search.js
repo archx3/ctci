@@ -101,7 +101,8 @@ function binarySearch2 (array, target) {
   let end = array.length - 1;
 
   while(start <= end) {
-    let middle = Math.floor((start + end) / 2);
+    // let middle = Math.floor((start + end) / 2);
+    let middle = start + Math.floor((end - start) / 2);
 
     if(array[middle] === target) {
       // found the target
