@@ -139,6 +139,22 @@ class LinkedList {
     return this;
   }
 
+  removeFirst () {
+    if (this.head.next === null) {
+      return null;
+    }
+
+    const node = this.head.next;
+    this.head.next = node.next;
+    node.next = null;
+
+    return node;
+  }
+
+  removeLast () {
+
+  }
+
   isEmpty () {
     return this.head.next === null;
   }
@@ -175,14 +191,30 @@ class LinkedList {
     let node = this.head
 
     for(; node.next !== null; node = node.next) {
-      console.log(node)
       str += `${node.value} -> `;
     }
 
     str += `${node.value} -> null`;
     return str;
   }
+
+  [Symbol.iterator] () {
+    let node = this.head;
+    return {
+      next () {
+        if (node.next === null) {
+          return { done: true };
+        } else {
+          const value = node.next.value;
+          node = node.next;
+          return { value, done: false };
+        }
+      }
+    }
+  }
 }
+
+module.exports = LinkedList;
 
 const list = new LinkedList(1);
 
@@ -196,4 +228,8 @@ list.remove(3);
 
 console.log(list.toString());
 
-console.log(list.size())
+// console.log(list.size())
+
+for (const node of list) {
+  console.log(node);
+}

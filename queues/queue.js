@@ -69,6 +69,23 @@ class Queue {
   toString () {
     return this.items.toString();
   }
+
+  // let make the queue iterable
+  [Symbol.iterator] () {
+    let index = 0;
+    const items = this.items;
+    const length = this.length;
+
+    return {
+      next () {
+        if (index < length) {
+          return { value: items[index++], done: false };
+        } else {
+          return { done: true };
+        }
+      }
+    };
+  }
 }
 
 module.exports = Queue;

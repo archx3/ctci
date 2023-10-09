@@ -27,7 +27,7 @@ const Stack = require('./stack.js');
  * @returns {*} - The next lexeme, or null if the input array is empty.
  */
 function getNextLexeme (lexemes) {
-  const lexeme = lexeme.shift();
+  const lexeme = lexemes.shift();
   if (lexeme === undefined) {
     return null;
   }
@@ -68,16 +68,16 @@ function getPrecedence (operator)  {
 
 /**
  * Shunting-yard algorithm
- * @param input {string
+ * @param infixExpression {string
  * @returns {Queue}
  */
-function shuntingYard (input) {
-  input = input.split('');
+function shuntingYard (infixExpression) {
+  infixExpression = infixExpression.split('');
 
   const output = new Queue();
   const operators = new Stack();
 
-  let lexeme = getNextLexeme(input);
+  let lexeme = getNextLexeme(infixExpression);
 
   while (lexeme !== null) {
     if (isOperator(lexeme)) {
@@ -100,7 +100,7 @@ function shuntingYard (input) {
       output.enqueue(parseInt(lexeme));
     }
 
-    lexeme = getNextLexeme(input);
+    lexeme = getNextLexeme(infixExpression);
   }
 
   while (!operators.isEmpty()) {

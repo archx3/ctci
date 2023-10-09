@@ -22,16 +22,31 @@
  * - [Symbol.isConcatSpreadable]: used to flatten the stack
  * - [Symbol.species]: get the constructor of the stack
  *
- * @class
+ * @see https://en.wikipedia.org/wiki/Stack_(abstract_data_type)
+ * @class Stack
  */
+
+/*class Node {
+  constructor (value) {
+    this.value = value;
+
+  }
+
+}*/
 
 class Stack {
   constructor (props) {
-    this.stack = [];
+    this.stack = []; // TODO - use a linked list instead
   }
 
+  #MAX_SIZE = 10;
+
   push (item) {
-    this.stack.push(item);
+    if (this.stack.length < this.#MAX_SIZE) {
+      this.stack.push(item);
+    } else {
+      throw new Error('Stack overflow');
+    }
   }
 
   pop () {
@@ -59,13 +74,40 @@ class Stack {
   }
 
   toString () {
-    return this.stack.toString();
+    return this.stack.reverse().toString();
   }
 
   getAll () {
     return this.stack;
   }
 
+  [Symbol.iterator] () {
+    const items = this.stack;
+    const length = this.stack.length;
+    let index = length
+
+    return {
+      next () {
+        if (index > 0) {
+          return { value: items[--index], done: false };
+        } else {
+          return { done: true };
+        }
+      }
+    }
+  }
+
 }
 
 module.exports = Stack;
+
+const stack = new Stack();
+stack.push(1);
+stack.push(2);
+stack.push(3);
+stack.push(4);
+stack.push(5);
+
+for (let item of stack) {
+  console.log(item)
+}
