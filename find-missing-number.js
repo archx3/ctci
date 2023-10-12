@@ -22,7 +22,12 @@
 function missingNumber (nums) {
   const SIZE = nums.length;
 
-  const map = new Map(nums.map((item, index) => [item, index]));
+  // const map = new Map(nums.map((item, index) => [item, index]));
+  const map = new Set();
+
+  for  (let i = 0; i < SIZE ; i++) {
+    map.add(nums[i]);
+  }
 
   let i = 0;
   while (i < SIZE) {
