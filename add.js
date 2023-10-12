@@ -1,5 +1,12 @@
 /*
 * Given two arrays of integers, compute the result of adding them as if each array represented a single integer.
+*
+* e.g. :
+*    [1, 2, 3]
+* [1, 2, 3, 4]
+* ------------
+* [2, 4, 6, 7]
+* ------------
 * */
 
 function leftPad (arr, size) {
