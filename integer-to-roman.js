@@ -124,4 +124,6 @@ function intToRomanLong(num) {
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 58, 1994, 3502, 2000, 2023, ];
 
-numbers.forEach(num => console.log(intToRomanLong(num)));
+// numbers.forEach(num => console.log(intToRomanLong(num)));
+console.log(intToRoman(1994))
+console.log(intToRomanLong(1994))
