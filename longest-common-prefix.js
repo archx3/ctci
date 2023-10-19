@@ -46,6 +46,8 @@ var longestCommonPrefix = function(words) {
 
   const SHORTEST_WORD_SIZE = SHORTEST_WORD.length;
 
+  // MSG: In order not to loop over every character of every word, we can first find the longest common prefix of the first and last words, then compare that prefix with the rest of the words.
+  //  if the iniial check fails, we can return an empty string. also if a word does not contain the prefix, we return an empty string, nut this seems expensive because we first need to sort to find the shortest and longest words or we can just loop over the words to find the shortest and longest words. running substring check on each word will also result in implicit looping over the words.
 
   let charAtIndexIsSameForAllWords = true;
 
@@ -74,30 +76,47 @@ var longestCommonPrefix = function(words) {
   return prefixCharArray.join("")
 };
 
-console.log(longestCommonPrefix(["flower","flow","flight"])) // "fl"
-console.log(longestCommonPrefix(["dog","racecar","car"])) // ""
+// console.log(longestCommonPrefix(["flower","flow","flight"])) // "fl"
+// console.log(longestCommonPrefix(["dog","racecar","car"])) // ""
+//
 
 
 /**
+ * Another common approach to solve this problem is to use the binary search algorithm.
+ * This approach exploits the fact that, if a sequence is sorted, we can efficiently check if a segment of the sequence is a prefix of all strings.
+ * In theory, this approach encompasses performing a binary search over the length of the answer. We first initialize the answer (low, high) pair as (0, minimum length of string). We then consider the string of median length per each iteration. We continue this process until low is less than high.
+ * Below is a JavaScript implementation of this approach:
  *
- * Here is a more efficient solution for finding the longest common prefix in a set of words. Instead of comparing each string to every other string, we will determine the shortest and longest words in the input array. We focus on these two because the longest common prefix cannot be longer than the shortest word, and it must be a prefix of the longest word as well. We then check character-by-character from the beginning of the shortest and longest words until we find a mismatch. The common prefix up to this point is our longest common prefix.
- *
- * This approach simplifies the problem and runs faster, especially when dealing with large arrays of words. It does not need to sort the words array and reduces the number of checks to be performed. The time complexity is O(n), where n is the sum of the lengths of the shortest and longest words, and the space complexity is O(1), which is significantly more efficient than the previous implementation.
+ * In this code, isCommonPrefix is a helper function that checks if the prefix of the given length is common to all words. The binary search occurs in the longestCommonPrefix function. This algorithm has a time complexity of O(NM log M), with N being the number of strings and M being the maximum length of a string.
  *
  * @param {string[]} words
  * @return {string}
  */
 var longestCommonPrefix_AI = function(words) {
-  if (words.length === 0) return "";
-  let min = words.reduce((a, b) => a.length <= b.length ? a : b);
-  let max = words.reduce((a, b) => a.length >= b.length ? a : b);
-  for (let i = 0; i < min.length; i++) {
-    if (min[i] !== max[i]) {
-      return min.substr(0, i);
+  if(!words.length) return "";
+  let minLen = Math.min(...words.map(word => word.length));
+  let low = 0, high = minLen;
+
+  while (low <= high) {
+    let mid = (low + high) >> 1;
+    if (isCommonPrefix(words, mid)) {
+      low = mid + 1;
+    } else {
+      high = mid - 1;
     }
   }
-  return min;
+  return words[0].slice(0, (low + high) >> 1);
 };
 
+function isCommonPrefix(words, length) {
+  let string = words[0].substring(0,length);
+  for(let i = 1; i< words.length; i++)
+    if(!words[i].startsWith(string))
+      return false;
+  return true;
+};
 
-console.log(longestCommonPrefix_AI(["flowe","flow","adight"])) // "fl"
+console.log(longestCommonPrefix_AI(["flo","flow","flight"])) // "fl"
+console.log(longestCommonPrefix_AI(["dog","racecar","car"])) // ""
+console.log(longestCommonPrefix_AI(["flower","flow","flight"])) // "fl"
+console.log(longestCommonPrefix_AI(["denim", "den", "denise", "denzel"])) // "den"
