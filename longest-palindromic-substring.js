@@ -94,3 +94,38 @@ function longestPalindrome_AI(s) {
   return s.substring(start, end + 1);
 }
 
+
+/**
+ *
+ * here is another approach to solving this problem using dynamic programming.
+ * The dynamic programming solution has a time complexity of O(n^2), where n is the length of the input string.
+ * However, its space complexity is also O(n^2) due to the use of a 2D array.
+ *
+ * This JavaScript function finds the longest palindromic substring using dynamic programming. The 2D dp array represents whether the substring s[j..i] is a palindrome. If dp[j][i] is true and i-j is larger than end-start, update start and end.
+ * Although the time complexity of the dynamic programming approach is the same as the brute force approach, the dynamic programming approach avoids redundancy by storing the palindrome results for smaller strings in a table from which it fetches the results directly to solve larger sub-problems. Note that the space complexity is higher (O(n^2)) for the Dynamic Programming approach since it uses a 2D matrix.
+ *
+ * @param {string} s
+ * @return {string}
+ */
+function longestPalindrome_AI_2 (s) {
+  if (!s || s.length < 2) {
+    return s;
+  }
+  let start = 0, end = 0;
+  let n = s.length;
+  // dp[i][j] will be 'true' if the string from index i to j is a palindrome.
+  let dp = new Array(n).fill(false).map(() => new Array(n).fill(false));
+
+  for (let i = 0; i < n; i++) { // All substrings with single character are palindromes. So, initializing dp[i][i] as 'true'.
+    dp[i][i] = true;
+    for (let j = 0; j < i; j++) { // substring s[j..i]
+      dp[j][i] = (s[j] === s[i] && (i - j < 3 || dp[j + 1][i - 1]));
+      if (dp[j][i] && end - start < i - j) {
+        start = j;
+        end = i;
+      }
+    }
+  }
+  return s.substring(start, end + 1);
+}
+
