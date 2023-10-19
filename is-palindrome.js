@@ -25,10 +25,12 @@ function isPalindrome (str) {
   return true
 }
 
-console.log('', isPalindrome(''));
-console.log('a', isPalindrome('a'));
-console.log('aa', isPalindrome('aa'));
-console.log('aaa', isPalindrome('aaa'));
-console.log('aba', isPalindrome('aba'));
-console.log('abba', isPalindrome('abba'));
-console.log('abca', isPalindrome('abca'));
+// console.log('', isPalindrome(''));
+// console.log('a', isPalindrome('a'));
+// console.log('aa', isPalindrome('aa'));
+// console.log('aaa', isPalindrome('aaa'));
+// console.log('aba', isPalindrome('aba'));
+// console.log('abba', isPalindrome('abba'));
+// console.log('abca', isPalindrome('abca'));
+
+module.exports = isPalindrome;
