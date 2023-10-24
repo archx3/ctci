@@ -2,27 +2,27 @@
 // const num = 10;
 //
 // // right shift operator (>>) divides by 2
-// console.log(num >> 1); // 5
-// console.log(num >> 2); // 2,
+console.log(num >> 1); // 5
+console.log(num >> 2); // 2,
 //
 // // left shift operator (<<) multiplies by 2
-// console.log(num << 1); // 20 = num * 2 ^ 1
-// console.log(num << 2); // 40 = num * 2 ^ 2
+console.log(num << 1); // 20 = num * 2 ^ 1
+console.log(num << 2); // 40 = num * 2 ^ 2
 //
 // // bitwise AND operator (&) checks if both bits are 1
-// console.log(5 & 3); // 1 == 101 & 011 = 001
-// console.log(5 & 2); // 0 == 101 & 010 = 000
+console.log(5 & 3); // 1 == 101 & 011 = 001
+console.log(5 & 2); // 0 == 101 & 010 = 000
 //
 // // it can be used to check if a number is even or odd
-// console.log(5 & 1); // odd, because 101 & 001 = 001
-// console.log(4 & 1); // even, because 100 & 001 = 000
+console.log(5 & 1); // odd, because 101 & 001 = 001
+console.log(4 & 1); // even, because 100 & 001 = 000
 //
 // // e.g. check if a number is even
-// const isEven = (num) => (num & 1) === 0;
+const isEven = (num) => (num & 1) === 0;
 // console.log(isEven(5)); // false
 //
 // // it can be used to check if a number is a power of 2
-// const isPowerOfTwo = (num) => (num & (num - 1)) === 0;
+const isPowerOfTwo = (num) => (num & (num - 1)) === 0;
 // console.log(isPowerOfTwo(4)); // true
 // console.log(isPowerOfTwo(5)); // false
 

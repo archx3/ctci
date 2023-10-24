@@ -91,7 +91,18 @@ const arr = Array.from({length: 10_000}, () => Math.floor(Math.random() * 40));
 
 // console.log(twoSum(arr, 6));
 
-
+/**
+ * Finds two numbers in an array that add up to a target value.
+ * In this approach, we use a hash table to store the difference between the target and each element in the array.
+ * If the difference exists in the hash table, we return the indices of the two numbers.
+ * If the difference does not exist in the hash table, we add the element to the hash table.
+ * This approach has a time complexity of O(n) and a space complexity of O(n).
+ * Because we don't add all the elements to the hash table at once before we search, we can reduce the space complexity to max O(n) and min O(1).
+ *
+ * @param {number[]} nums - The array of numbers to search.
+ * @param {number} target - The target sum.
+ * @returns {(number[]|null)} - An array containing the indices of the two numbers that add up to the target sum, or null if no such numbers exist.
+ */
 function twoSumN(nums, target) {
   // const map = new Map(nums.map((item, index) => [item, index]));
   const map = new Map();

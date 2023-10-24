@@ -31,20 +31,7 @@
  *
  *
  * Follow up: Could you solve it without converting the integer to a string?
- * Accepted
- * 3.4M
- * Submissions
- * 6.3M
- * Acceptance Rate
- * 54.0%
- * Seen this question in a real interview before?
- * 1/4
- * Yes
- * No
- * Discussion (200)
- * Similar Questions
- * Palindrome Linked List
- * Easy
+ *
  * Find Palindrome With Fixed Length
  * Medium
  * Strictly Palindromic Number

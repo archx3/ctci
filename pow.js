@@ -58,6 +58,7 @@ function pow(x, n) {
 
   const isNegative = n < 0;
   isNegative && (n = -n); // Math.abs(x)
+
   for (let i = 1; i <= n; i++) {
     result = result * x;
   }
