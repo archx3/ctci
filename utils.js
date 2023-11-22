@@ -1,13 +1,24 @@
-function leftPad (arr, size) {
+function leftPad (arr, size, value = 0) {
   let i = -1;
 
   while (++i < size) {
-    arr.unshift(0);
+    arr.unshift(value);
+  }
+
+  return arr;
+}
+
+function rightPad (arr, size, value = 0) {
+  let i = -1;
+
+  while (++i < size) {
+    arr.push(value);
   }
 
   return arr;
 }
 
 module.exports = {
-  leftPad
+  leftPad,
+  rightPad
 }
