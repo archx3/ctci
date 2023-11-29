@@ -74,5 +74,51 @@ function add (num1, num2) {
   return result
 }
 
-console.log(add([1, 2, 3], [1, 2, 3, 4]));
-console.log(add([3, 5, 9], [9, 4, 9]))
+// console.log(add([1, 2, 3], [1, 2, 3, 4]));
+// console.log(add([3, 5, 9], [9, 4, 9]))
+
+
+function addMultiple (arrays) {
+  let result = [];
+
+  let longest = 0;
+  for (let i = 0; i < arrays.length; i++) {
+    if (arrays[i].length > longest) {
+      longest = arrays[i].length;
+    }
+  }
+
+  for (let i = 0; i < arrays.length; i++) {
+    if (arrays[i].length < longest) {
+      arrays[i] = leftPad(arrays[i], longest - arrays[i].length);
+    }
+  }
+
+  let i = longest;
+  let carry = 0;
+  while (--i > -1) {
+    let columnSum = 0;
+    for (let j = 0; j < arrays.length; j++) {
+      columnSum += arrays[j][i];
+    }
+    columnSum += carry;
+
+    if (columnSum >= 10) {
+      carry = Math.floor(columnSum / 10);
+      columnSum = columnSum % 10;
+    } else {
+      carry = 0;
+    }
+
+    result.unshift(columnSum);
+  }
+
+  return result;
+}
+
+console.log(addMultiple([[1, 2, 3], [1, 2, 3, 4], [1, 2, 3, 4, 5]]));
+
+module.exports = {
+  add,
+  addMultiple
+}
