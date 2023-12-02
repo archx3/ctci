@@ -86,7 +86,14 @@ const multiplyStringSimple = function multiplyString (num1, num2) {
   const NUM_1_SIZE = num1.length;
   const NUM_2_SIZE = num2.length;
 
-  const LONGEST_SEQUENCE_SIZE = NUM_1_SIZE + NUM_2_SIZE;
+  if (NUM_1_SIZE < 1 || NUM_2_SIZE < 1) {
+    return "0";
+  }
+
+  if (NUM_1_SIZE === 1 && num1[0] === "0" || NUM_2_SIZE === 1 && num2[0] === "0") {
+    return "0";
+  }
+
   let largest = NUM_1_SIZE;
   // let smallest = NUM_2_SIZE;
 
@@ -103,47 +110,56 @@ const multiplyStringSimple = function multiplyString (num1, num2) {
 
   let result = [];
 
-  for (let i = 0; i < largest; i++) {
-    result.push([]);
-  }
+  // for (let i = 0; i < largest; i++) {
+  //   result.push([]);
+  // }
 
   let i = largest;
 
   let currentRow = 0;
+
+
   while (--i >= 0) {
     let j = largest;
     let carry = 0;
 
+    let temp = [];
     while (--j >= 0) {
       let product = (num1[i] * num2[j]) + carry;
       let value = product % 10;
+      console.log({n1 : num1[i], n2 : num2[j], product, prdct: num1[i] * num2[j], cry : carry, result})
 
       // if (i === largest - 1) { // first row
-        result[i].unshift(value);
+      //   result[i].unshift(value);
+      temp.unshift(value);
       // }
       carry = Math.floor(product / 10);
+      console.log({carry})
 
       if (carry > 0 && j <= 0) {
-        result[i].unshift(carry);
-        carry = 0;
+        // result[i].unshift(carry);
+        temp.unshift(carry)
       }
 
     }
+    result.unshift(temp);
 
-    if (i !== largest - 1) {
+    if (i !== NUM_1_SIZE - 1) {
       currentRow++;
     }
+
+
   }
-
-  for (let i = 0; i < largest; i++) {
-    result[i] = rightPad(result[i], largest - i - 1, 0);
-
-    while (result[i][0] === 0) {
-      result[i].shift();
-    }
-  }
-
+  // for (let i = 0; i < largest; i++) {
+  //   result[i] = rightPad(result[i], largest - i - 1, 0);
+  //
+  //   while (result[i][0] === 0) {
+  //     result[i].shift();
+  //   }
+  // }
+// return result;
   return addMultiple(result);
+  // return addMultiple(result).join("");
 }
 
 /**
@@ -316,10 +332,14 @@ const multiplyStringAI = function multiplyString (num1, num2) {
 }
 
 // console.log(multiplyStringAI ("456", "423", ));
-console.log(multiplyStringSimple ("5", "10", ));
-console.log(multiplyStringSimple ("10", "5", ));
-console.log(multiplyStringSimple ("10", "25", ));
-console.log(multiplyStringSimple ("123", "456", ));
-console.log(multiplyStringSimple ("6", "423", ));
-console.log(multiplyStringSimple ("56", "423", ));
-console.log(multiplyStringSimple ("456", "423", ));
+// console.log(multiplyStringSimple ("5", "10", ));
+// console.log(multiplyStringSimple ("10", "5", ));
+// console.log(multiplyStringSimple ("10", "25", ));
+// console.log(multiplyStringSimple ("123", "456", ));
+// console.log(multiplyStringSimple ("6", "423", ));
+// console.log(multiplyStringSimple ("56", "423", ));
+// console.log(multiplyStringSimple ("456", "423", ));
+console.log(multiplyStringSimple ( "123456789","9",  )); // "121932631112635269"
+// console.log(multiplyStringSimple ( "9",  "123456789",)); // "121932631112635269"
+// console.log(multiplyStringSimple ("987654321", "123456789",  )); // "121932631112635269"
+// console.log(multiplyStringAI ("123456789", "987654321", )); // "121932631112635269"
