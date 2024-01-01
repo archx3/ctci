@@ -331,6 +331,8 @@ const multiplyStringAI = function multiplyString (num1, num2) {
   return result.length ? result.join('') : '0';
 }
 
+// #02183B
+
 // console.log(multiplyStringAI ("456", "423", ));
 // console.log(multiplyStringSimple ("5", "10", ));
 // console.log(multiplyStringSimple ("10", "5", ));
