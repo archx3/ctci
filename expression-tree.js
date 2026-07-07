@@ -12,8 +12,8 @@
 const { shuntingYard } = require('./shunting-yard-algorithm');
 const Stack = require('./stack');
 
-/*
 
+/*
 shuntingYard(infix) {
   let outputQueue = '';
   let operatorStack = [];
@@ -46,6 +46,7 @@ shuntingYard(infix) {
 
   return outputQueue;
 }
+
 
 class ExpressionTreeNode {
   constructor(value, type) {
@@ -264,10 +265,8 @@ class ExpressionTree {
   }
 }
 
-
-
 let expressionTree = new ExpressionTree();
 let tree = expressionTree.buildTree('1+2*5-4');
-// console.log(JSON.stringify(tree, null, 2));
+console.log(JSON.stringify(tree, null, 2));
 let result = expressionTree.evaluate(tree);
 console.log(`Expression Result: ${result}`);

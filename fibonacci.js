@@ -52,3 +52,28 @@ function memoizedFibonacciWithArray (n, memo = creatArray(n + 1, 0)) {
 }
 
 console.log(memoizedFibonacciWithArray(8));
+
+
+
+
+
+
+
+
+function fibonacci2d(n) {
+  if (n <= 1) return n;
+
+  return fibonacci2d(n-1) + fibonacci2d(n-2)
+}
+
+// const f5 = fibonacci2d(5);
+console.log(fibonacci2d(3))
+
+
+
+
+
+
+
+
+

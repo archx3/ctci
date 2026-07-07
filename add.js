@@ -74,8 +74,8 @@ function add (num1, num2) {
   return result
 }
 
-// console.log(add([1, 2, 3], [1, 2, 3, 4]));
-// console.log(add([3, 5, 9], [9, 4, 9]))
+console.log(add([1, 2, 3], [1, 2, 3, 4]));
+console.log(add([3, 5, 9], [9, 4, 9]))
 
 
 function addMultiple (arrays) {
@@ -116,9 +116,59 @@ function addMultiple (arrays) {
   return result;
 }
 
-console.log(addMultiple([[1, 2, 3], [1, 2, 3, 4], [1, 2, 3, 4, 5]]));
+// console.log(addMultiple([[1, 2, 3], [1, 2, 3, 4], [1, 2, 3, 4, 5]]));
 
 module.exports = {
   add,
   addMultiple
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////
+/// carry = 0   ///
+//     "12395"   //
+//   + "  456"   //
+//   ---------  //
+//      "12851"  //
+//   ---------  //
+//////////////////
+
+
+// Cyclomatic complexity is a software metric used to indicate the complexity of a program. It is a quantitative measure of the number of linearly independent paths through a program's source code. It was developed by Thomas J. McCabe, Sr. in 1976. Cyclomatic complexity is computed using the control flow graph of the program: the nodes of the graph correspond to indivisible groups of commands of a program, and a directed edge connects two nodes if the second command might be executed immediately after the first command. Then, the cyclomatic complexity = E − N + 2P, where E is the number of edges of the graph, N the number of nodes of the graph and P the number of connected components. The cyclomatic complexity can also be computed as L − N + 2P, where L is the number of edges/links in the graph, and N and P are defined as before. This alternative definition is useful in case the graph has one or more exit points (i.e., nodes with zero out degree). The cyclomatic complexity of a section of source code is the number of decision statements (such as if and switch) in the source code plus one.[1][2] It is a quantitative measure of the number of linearly independent paths through a program's source code. It was developed by Thomas J. McCabe, Sr. in 1976.

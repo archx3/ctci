@@ -332,7 +332,6 @@ const multiplyStringAI = function multiplyString (num1, num2) {
 }
 
 // #02183B
-
 // console.log(multiplyStringAI ("456", "423", ));
 // console.log(multiplyStringSimple ("5", "10", ));
 // console.log(multiplyStringSimple ("10", "5", ));
@@ -340,7 +339,7 @@ const multiplyStringAI = function multiplyString (num1, num2) {
 // console.log(multiplyStringSimple ("123", "456", ));
 // console.log(multiplyStringSimple ("6", "423", ));
 // console.log(multiplyStringSimple ("56", "423", ));
-// console.log(multiplyStringSimple ("456", "423", ));
+// console.log(multiplyStringSimple ("456", "423", )); // "193488"
 console.log(multiplyStringSimple ( "123456789","9",  )); // "121932631112635269"
 // console.log(multiplyStringSimple ( "9",  "123456789",)); // "121932631112635269"
 // console.log(multiplyStringSimple ("987654321", "123456789",  )); // "121932631112635269"

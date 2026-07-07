@@ -93,7 +93,7 @@ function powRecursive (x, n) {
 
 // console.log(powRecursive(2, 2))
 // console.log(powRecursive(2, 3))
-console.log(powRecursive(2, 10));
+console.log(powRecursive(2, 12));
 
 // console.log(powRecursive(2, -2));
 // console.log(powRecursive(8, -1));
@@ -116,11 +116,11 @@ function powRecursiveMemoized (x, n, memo = {}) {
   }
 
   if (n < 0) {
-    memo[n] = 1 / powRecursive(x, -n, memo);
+    memo[n] = 1 / powRecursiveMemoized(x, -n, memo);
   }
-  memo[n] = x * powRecursive(x, n - 1, memo);
+  memo[n] = x * powRecursiveMemoized(x, n - 1, memo);
 
   return memo[n];
 }
 
-console.log(powRecursiveMemoized(2, 10));
+// console.log(powRecursiveMemoized(2, 10));

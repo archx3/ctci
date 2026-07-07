@@ -79,7 +79,8 @@ function missingNumber1 (nums) {
   const SIZE = nums.length;
 
   // formula for the sum of the first n natural numbers is SIZE* (SIZE+1)/2
-  let total = ((SIZE + 1) * (SIZE + 2)) / 2; // we need to add 1 to SIZE because the array is missing one element
+  // let total = ((SIZE + 1) * (SIZE + 2)) / 2; // we need to add 1 to SIZE because the array is missing one element
+  let total = (SIZE * (SIZE + 1)) / 2; // we need to add 1 to SIZE because the array is missing one element
 
   //we don't have to use reduce here, we can just use a for loop and subtract each element from total, the remainder will be the missing element
   // console.log({total})

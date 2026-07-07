@@ -9,12 +9,16 @@ An input string is valid if:
     Every close bracket has a corresponding open bracket of the same type.
 * */
 
+const bracketChars = new Set([
+  '(', ')', '{', '}', '[', ']'
+])
+
 /**
  * @param {string} s
  * @return {boolean}
  */
-var isValid = function(s) {
-  if (typeof s !== "string" || s.length < 1) {
+const isValid = function(s) {
+  if (s.length < 1) {
     return false;
   }
 
@@ -24,15 +28,20 @@ var isValid = function(s) {
     '[' : ']'
   };
 
-  const bracketsStack = [];
+  const bracketsStack= [];
 
   for (let i = 0, len = s.length; i < len; i++) {
-    if (s[i] in bracketPairs) {
-      bracketsStack.push(s[i]);
+    const char = s[i];
+    if (!bracketChars.has(s[i])) {
       continue;
     }
 
-    if (bracketPairs[bracketsStack.pop()] !== s[i]) {
+    if (s[i] in bracketPairs) {
+      bracketsStack.push(char);
+      continue;
+    }
+
+    if (bracketPairs[bracketsStack.pop()] !== char) {
       return false;
     }
   }
@@ -44,4 +53,4 @@ var isValid = function(s) {
 console.log(isValid('()[{}]'));
 console.log(isValid('(]'));
 console.log(isValid('([)]'));
-console.log(isValid('{[]}'));
+console.log(isValid('{[,(|)]}'));

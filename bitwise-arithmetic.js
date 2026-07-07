@@ -1,5 +1,5 @@
 // // division by t
-// const num = 10;
+const num = 10;
 //
 // // right shift operator (>>) divides by 2
 console.log(num >> 1); // 5
@@ -8,6 +8,7 @@ console.log(num >> 2); // 2,
 // // left shift operator (<<) multiplies by 2
 console.log(num << 1); // 20 = num * 2 ^ 1
 console.log(num << 2); // 40 = num * 2 ^ 2
+console.log(num << 3); // 40 = num * 3 ^ 3
 //
 // // bitwise AND operator (&) checks if both bits are 1
 console.log(5 & 3); // 1 == 101 & 011 = 001

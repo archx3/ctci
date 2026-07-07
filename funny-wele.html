@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Did AI Teach Odartey the truth?</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      position: relative;
+      background-color: #f0f0f0;
+      height: 100vh;
+    }
+
+    .box {
+      width: 200px;
+      height: 200px;
+    }
+
+    .static {
+      position: static;
+    }
+    .red-box {
+      top: 40px;
+      left: 40px;
+      background-color: red;
+    }
+
+    .relative {
+      position: relative;
+    }
+
+    .green-box {
+      top: 0px;
+      left: 40px;
+      background-color: green;
+    }
+
+    .absolute {
+      position: absolute;
+    }
+
+    .blue-box {
+      top: 0px;
+      left: 100px;
+      background-color: blue;
+    }
+
+    div.scoped {
+      width: 800px;
+      height: 400px;
+      background-color: rgb(129 255 184);
+      top: 50px;
+      left: 100px;
+    }
+
+    .tooltip {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .tooltip::after {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color:  transparent transparent rgba(0, 0, 0, 0.8) transparent;
+    }
+  </style>
+</head>
+<body>
+<div class="static box red-box" data-tooltip="Red Box"></div>
+<div class="relative box green-box" data-tooltip="Green Box"></div>
+<div class="absolute box  blue-box" data-tooltip="Blue Box"></div>
+
+<div class="scoped relative">
+  <div class="absolute box  blue-box" data-tooltip="Scoped Blue Box"
+  ></div>
+</div>
+
+<div class="tooltip"></div>
+
+<script>
+  const tooltipEls = document.querySelectorAll('[data-tooltip]');
+  const tooltip = document.querySelector('.tooltip');
+
+  tooltipEls.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      const tooltipText = el.getAttribute('data-tooltip');
+
+      // Position the tooltip based on the hovered element's position
+      const rect = el.getBoundingClientRect();
+      tooltip.style.top = `${rect.top + rect.height / 2}px`;
+      tooltip.style.left = `${rect.left + rect.width / 2}px`;
+
+      tooltip.textContent = tooltipText;
+      tooltip.style.display = 'block';
+    });
+
+    el.addEventListener('mouseleave', () => {
+      tooltip.style.display = 'none';
+    });
+  });
+</script>
+</body>
+</html>

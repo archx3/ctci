@@ -10,7 +10,7 @@ function toBinary(n) {
     n = n >> 1; // n >> 1
   }
 
-  return digits;
+  return digits.join('')
 }
 
 console.log(toBinaryString(5))
